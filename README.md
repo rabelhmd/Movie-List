@@ -1,5 +1,5 @@
 # Movie-List
-A demo project
+A demo project for iOS using Swift UI.
 
 ## Screenshots
 
