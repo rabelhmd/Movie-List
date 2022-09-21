@@ -10,6 +10,7 @@
 		6216934D28DB9A5E0089E33D /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279355528DB38F200985521 /* HomeView.swift */; };
 		6216935228DB9C770089E33D /* MoviesUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279357028DB38F300985521 /* MoviesUITestsLaunchTests.swift */; };
 		6216935328DB9C7A0089E33D /* MoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279356E28DB38F300985521 /* MoviesUITests.swift */; };
+		6216935628DBA0410089E33D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6216935528DBA0410089E33D /* HomeViewModel.swift */; };
 		6279355428DB38F200985521 /* MoviesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279355328DB38F200985521 /* MoviesApp.swift */; };
 		6279355628DB38F200985521 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6279355528DB38F200985521 /* HomeView.swift */; };
 		6279355828DB38F300985521 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6279355728DB38F300985521 /* Assets.xcassets */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		6216935528DBA0410089E33D /* HomeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		6279355028DB38F200985521 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6279355328DB38F200985521 /* MoviesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesApp.swift; sourceTree = "<group>"; };
 		6279355528DB38F200985521 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -72,6 +74,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6216935428DBA01D0089E33D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				6216935528DBA0410089E33D /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		6279354728DB38F200985521 = {
 			isa = PBXGroup;
 			children = (
@@ -95,8 +105,9 @@
 		6279355228DB38F200985521 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
-				6279355328DB38F200985521 /* MoviesApp.swift */,
 				6279357D28DB39EF00985521 /* Views */,
+				6216935428DBA01D0089E33D /* ViewModels */,
+				6279355328DB38F200985521 /* MoviesApp.swift */,
 				6279355728DB38F300985521 /* Assets.xcassets */,
 				6279355928DB38F300985521 /* Preview Content */,
 			);
@@ -267,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6279355628DB38F200985521 /* HomeView.swift in Sources */,
+				6216935628DBA0410089E33D /* HomeViewModel.swift in Sources */,
 				6279355428DB38F200985521 /* MoviesApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject private var homeVM = HomeViewModel()
     
     var body: some View {
         NavigationView {
@@ -16,5 +17,9 @@ struct HomeView: View {
                 .navigationBarHidden(false)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .searchable(text: $homeVM.searchText)
+        .onSubmit(of: .search) {
+            
+        }
     }
 }
