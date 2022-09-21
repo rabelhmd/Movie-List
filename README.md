@@ -7,8 +7,7 @@ Swift, Swift UI, MVVM, Searchable, Text, JSONDecoder, API.
 
 ## Challenges
 
-From [The Movie DB](https://api.themoviedb.org/3/search/movie?api_key=38e61227f85671163
-c275f9bd95a8803&query=marvel):
+From [The Movie DB](https://api.themoviedb.org/3/search/movie?api_key=38e61227f85671163c275f9bd95a8803&query=marvel):
 >1. Use the given URL to parse JSON data and show in the
 application.
 >2. Show poster image, title and overview from JSON.
