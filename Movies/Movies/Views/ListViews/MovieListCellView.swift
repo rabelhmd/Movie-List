@@ -77,5 +77,6 @@ extension MovieListCellView {
     
     @ViewBuilder private func descriptionView() -> some View {
         Text(model.overview)
+            .font(.body)
     }
 }
