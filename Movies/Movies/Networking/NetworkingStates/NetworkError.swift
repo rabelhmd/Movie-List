@@ -14,6 +14,17 @@ enum NetworkError: Error {
     case transportError
     case serverError
     case badToken
+    
+    var description: String {
+        switch self {
+        case .badUrl: return "Bad URL!!!"
+        case .noData: return "🙁 No Data Found!!!"
+        case .decodingError: return "Decoding Error!!!"
+        case .transportError: return "Transport Error!!!"
+        case .serverError: return "Server Error!!!"
+        case .badToken: return "Bad Token Error"
+        }
+    }
 }
 
 extension NetworkError {

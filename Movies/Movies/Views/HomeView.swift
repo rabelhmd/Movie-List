@@ -13,10 +13,19 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            MovieListView(viewModel: movieListVM)
-                .vTop()
-                .navigationBarTitle(Text(homeVM.title), displayMode: .automatic)
-                .navigationBarHidden(false)
+            ZStack {
+                NoDataFoundView(errorText: movieListVM.errorText)
+                    .vCenter()
+                    .hCenter()
+                    .isHidden(movieListVM.hideErrorView)
+                MovieListView(viewModel: movieListVM)
+                    .vTop()
+                    .isHidden(movieListVM.hideMovieListView)
+                LoadingProgressView(title: movieListVM.loadingTitle)
+                    .isHidden(movieListVM.hideProgressView)
+            }
+            .navigationBarTitle(Text(homeVM.title), displayMode: .automatic)
+            .navigationBarHidden(false)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .searchable(text: $homeVM.searchText)

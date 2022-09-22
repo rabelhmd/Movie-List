@@ -12,8 +12,25 @@ class MovieListViewModel: ObservableObject {
     
     @Published var listData = [MovieSchemaResult]()
     @Published var loadingState = LoadingState.none
+    @Published var loadingTitle = "Loading..."
     private let httpClient = HTTPClient()
-    var loadingError: NetworkError?
+    @Published var errorText: String = "Error!!!"
+    
+    var hideProgressView: Bool {
+        loadingState != .loading
+    }
+    
+    var hideMovieListView: Bool {
+        loadingState != .success
+    }
+    
+    var hideErrorView: Bool {
+        switch loadingState {
+        case .none: return true
+        case .loading, .success: return true
+        case .failed: return false
+        }
+    }
     
     deinit {
         printIfDebug(TAG + "\(#function)")
@@ -27,7 +44,6 @@ class MovieListViewModel: ObservableObject {
     func release() {
         printIfDebug(TAG + "\(#function)")
         loadingState = .none
-        loadingError = nil
         listData = []
     }
     
@@ -35,6 +51,7 @@ class MovieListViewModel: ObservableObject {
         printIfDebug(TAG + "\(#function)")
         
         updateLoadingState(.loading)
+        
         httpClient.getMovies(query: query) { result in
             switch result {
             case .success(let movieSchema):
@@ -43,26 +60,39 @@ class MovieListViewModel: ObservableObject {
                 }
             case .failure(let error):
                 print(error)
-                Thread.delay(bySeconds: 0.5) {
+                Thread.delay(bySeconds: 0.0) {
                     self.onFailedSchemaLoad(error)
                 }
             }
         }
     }
     
-    private func updateLoadingState(_ loadingState: LoadingState) {
-        Thread.delay(bySeconds: 0.0) {
-            self.loadingState = loadingState
+    private func onDataLoaded(_ movieSchema: MovieSchema?) {
+        self.listData = movieSchema?.movieSchemaResults ?? []
+        if listData.isEmpty {
+            onFailedSchemaLoad(.noData)
+        } else {
+            updateLoadingState(.success)
         }
     }
     
-    private func onDataLoaded(_ movieSchema: MovieSchema?) {
-        self.listData = movieSchema?.movieSchemaResults ?? []
-        updateLoadingState(.success)
+    private func onFailedSchemaLoad(_ error: NetworkError) {
+        updateLoadingState(.failed)
+        updateErrorText(error)
     }
     
-    private func onFailedSchemaLoad(_ error: NetworkError) {
-        loadingError = error
-        updateLoadingState(.failed)
+    private func updateLoadingState(_ loadingState: LoadingState) {
+        Thread.delay(bySeconds: 0.0) {
+            self.loadingState = loadingState
+            self.updateLoadingTitle(loadingState)
+        }
+    }
+    
+    private func updateLoadingTitle(_ loadingState: LoadingState) {
+        self.loadingTitle = loadingState.description
+    }
+    
+    private func updateErrorText(_ error: NetworkError) {
+        self.errorText = error.description
     }
 }

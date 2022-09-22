@@ -12,4 +12,13 @@ enum LoadingState {
     case success
     case failed
     case none
+    
+    var description: String {
+        switch self {
+        case .none: return "None"
+        case .failed: return "Failed."
+        case .success: return "Success."
+        case .loading: return "Loading..."
+        }
+    }
 }
